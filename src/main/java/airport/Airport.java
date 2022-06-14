@@ -17,6 +17,7 @@ public class Airport {
         this.hangar.add(plane);
     }
     public Plane takeoff(Plane plane) {
-        return this.hangar.get(0);
+        if (!this.hangar.contains(plane)) throw new IllegalArgumentException("Plane is not at this airport");
+        return this.hangar.remove(this.hangar.indexOf(plane));
     }
 }

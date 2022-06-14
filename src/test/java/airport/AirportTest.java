@@ -38,4 +38,14 @@ public class AirportTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> airport.land(plane));
         assertTrue(exception.getMessage().contains("Plane has already landed"));
     }
+
+    @Test
+    public void airportCantTakeOffPlaneTwice() {
+        Plane plane = mock(Plane.class);
+        Airport airport = new Airport();
+        airport.land(plane);
+        airport.takeoff(plane);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> airport.takeoff(plane));
+        assertTrue(exception.getMessage().contains("Plane is not at this airport"));
+    }
 }
