@@ -1,7 +1,12 @@
 package airport;
 
 public class Airport {
-    public void land(Plane plane) {
+    private Plane hangar;
 
+    public void land(Plane plane) {
+        this.hangar = plane;
+    }
+    public Plane takeoff() {
+        return this.hangar;
     }
 }
