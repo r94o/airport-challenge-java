@@ -15,9 +15,11 @@ public class Airport {
         if (this.hangar.size() == CAPACITY) throw new ArrayIndexOutOfBoundsException("Airport is full");
         if (this.hangar.contains(plane)) throw new IllegalArgumentException("Plane has already landed");
         this.hangar.add(plane);
+        plane.setFlyingStatus(false);
     }
     public Plane takeoff(Plane plane) {
         if (!this.hangar.contains(plane)) throw new IllegalArgumentException("Plane is not at this airport");
+        plane.setFlyingStatus(true);
         return this.hangar.remove(this.hangar.indexOf(plane));
     }
 }
