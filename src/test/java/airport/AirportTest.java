@@ -75,4 +75,15 @@ public class AirportTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> airport.land(plane));
         assertTrue(exception.getMessage().contains("Plane cannot land due to weather conditions"));
     }
+    @Test
+    public void planeCantTakeoffWhenStormy() {
+        Plane plane = mock(Plane.class);
+        when(plane.getFlyingStatus()).thenReturn(true).thenReturn(false);
+        Weather weather = mock(Weather.class);
+        when(weather.generateConditions()).thenReturn("Sunny").thenReturn("Stormy");
+        Airport airport = new Airport(weather);
+        airport.land(plane);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> airport.takeoff(plane));
+        assertTrue(exception.getMessage().contains("Plane cannot takeoff due to weather conditions"));
+    }
 }

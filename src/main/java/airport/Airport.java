@@ -24,6 +24,7 @@ public class Airport {
     }
     public Plane takeoff(Plane plane) {
         if (!this.hangar.contains(plane) || plane.getFlyingStatus()) throw new IllegalArgumentException("Plane is not at this airport");
+        if (weather.generateConditions() == "Stormy") throw new IllegalArgumentException("Plane cannot takeoff due to weather conditions");
         plane.setFlyingStatus(true);
         return this.hangar.remove(this.hangar.indexOf(plane));
     }
