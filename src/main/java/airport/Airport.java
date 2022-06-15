@@ -13,9 +13,10 @@ public class Airport {
     ArrayList<Plane> hangar = new ArrayList<Plane>();
     public void land(Plane plane) {
         if (this.hangar.size() == CAPACITY) throw new ArrayIndexOutOfBoundsException("Airport is full");
-        if (this.hangar.contains(plane)) throw new IllegalArgumentException("Plane has already landed");
-        this.hangar.add(plane);
+        if (!plane.getFlyingStatus()) throw new IllegalArgumentException("Plane has already landed");
         plane.setFlyingStatus(false);
+        this.hangar.add(plane);
+
     }
     public Plane takeoff(Plane plane) {
         if (!this.hangar.contains(plane)) throw new IllegalArgumentException("Plane is not at this airport");

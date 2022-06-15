@@ -1,7 +1,13 @@
 package airport;
 
 public class Plane {
-    public void setFlyingStatus(Boolean status) {
+    private boolean flyingStatus = true;
 
+    public void setFlyingStatus(Boolean status) {
+        this.flyingStatus = status;
+
+    }
+    public boolean getFlyingStatus() {
+        return this.flyingStatus;
     }
 }
